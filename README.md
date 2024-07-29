@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+**Стек:** 
+WebApp, React + TS, Vite, SCSS, Axios, Zustand
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Проект:**
+Сделать базовый кликер на telegram mini-apps
 
-Currently, two official plugins are available:
+**Экран:**
+Состоит из поля на котором выведен баланс, фрукт на который необходимо нажать, уровень энергии в доступе у игрока.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Функционал:**
+При клике на фрукт увеличивается баланс на 1 монету и уменьшается энергия на 1. 
+При энергии меньше единицы тапать на фрукт нельзя.
+Энергия беспрерывно отрастает до изначального состояния. (на одну единицу в секунду).
 
-## Expanding the ESLint configuration
+**Бэкенд:**
+Для получения данных использовать вызовы к API
+Бэкенд нужно развернуть локально через docker compose, инструкция в readme.md
+https://gitlab.itworkin.com/itworkin_public/test_frontend.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**Дизайн:**
+[https://www.figma.com/design/HM8wsuQgdV4in7jK6aTc4G/Wild-Тапалка-(Copy)?node-id=23-5174&t=uCxkFAyEPEmG6Mfl-0](https://www.figma.com/design/HM8wsuQgdV4in7jK6aTc4G/Wild-%D0%A2%D0%B0%D0%BF%D0%B0%D0%BB%D0%BA%D0%B0-(Copy)?node-id=23-5174&t=uCxkFAyEPEmG6Mfl-0)
