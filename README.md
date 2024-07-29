@@ -19,3 +19,7 @@ https://gitlab.itworkin.com/itworkin_public/test_frontend.git
 
 **Дизайн:**
 [https://www.figma.com/design/HM8wsuQgdV4in7jK6aTc4G/Wild-Тапалка-(Copy)?node-id=23-5174&t=uCxkFAyEPEmG6Mfl-0](https://www.figma.com/design/HM8wsuQgdV4in7jK6aTc4G/Wild-%D0%A2%D0%B0%D0%BF%D0%B0%D0%BB%D0%BA%D0%B0-(Copy)?node-id=23-5174&t=uCxkFAyEPEmG6Mfl-0)
+
+**Демо:**
+
+<img src="./src/assets/demo.webp"/>
