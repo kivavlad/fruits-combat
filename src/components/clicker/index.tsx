@@ -15,10 +15,14 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
   const fruits = [blueberryImg, cherryImg, fruitImg, orangeImg, pearImg, pineappleImg, raspberryImg, strawberryImg, watermellonImg];
 
   // Узнаем координаты клика или касания
-  const handleClickPosition = (e: React.MouseEvent<HTMLButtonElement>, clickValue: number) => {
+  const handleClickPosition = (e: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>, clickValue: number) => {
     const clickPosition = {
-      x: e.clientX - e.currentTarget.getBoundingClientRect().left,
-      y: e.clientY - e.currentTarget.getBoundingClientRect().top
+      x: (e as React.MouseEvent<HTMLButtonElement>).clientX 
+        ? (e as React.MouseEvent<HTMLButtonElement>).clientX - e.currentTarget.getBoundingClientRect().left 
+        : (e as React.TouchEvent<HTMLButtonElement>).touches[0].clientX - e.currentTarget.getBoundingClientRect().left,
+      y: (e as React.MouseEvent<HTMLButtonElement>).clientY 
+        ? (e as React.MouseEvent<HTMLButtonElement>).clientY - e.currentTarget.getBoundingClientRect().top 
+        : (e as React.TouchEvent<HTMLButtonElement>).touches[0].clientY - e.currentTarget.getBoundingClientRect().top,
     }
 
     const newClick = {...clickPosition, id: Date.now()};
@@ -39,9 +43,20 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
 
   // Событие при клике
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (energy > 1) {
+    if (window.innerWidth > 768 && energy > 1) {
       setCounter(1);
       handleClickPosition(e, counter);
+      triggerAnimation();
+    }
+  }
+
+  // Событие при касании
+  const handleTouch = (e: React.TouchEvent<HTMLButtonElement>) => {
+    if (window.innerWidth <= 768 && energy > 1) {
+      const touchCount = e.touches.length;
+      const clickValue = touchCount > 1 ? touchCount : 1;
+      setCounter(clickValue);
+      handleClickPosition(e, clickValue);
       triggerAnimation();
     }
   }
@@ -56,7 +71,8 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
     <div className={styles.clicker}>
       <button 
         type="button" 
-        onClick={handleClick}
+        onClick={handleClick} 
+        onTouchStart={handleTouch}
       >
         {clicks.map((click) => (
           <div className={styles.indicator} 
