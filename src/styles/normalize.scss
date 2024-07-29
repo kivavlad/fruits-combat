@@ -1,0 +1,31 @@
+@font-face {
+  font-display: swap; 
+  font-family: 'Japanese3017';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Japanese3017.ttf'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Qanelas';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/fonts/Qanelas-Medium.ttf');
+}
+
+:root {
+  /* Colors */
+  --white: #FFFFFF;
+  --bg: #22001B;
+  --wb1: #CB10AC;
+  --wb2: #4A1174;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Qanelas';
+  font-weight: 500;
+  color: var(--white);
+  background: linear-gradient(to bottom right, #22001B, #4A1174) no-repeat center;
+}

@@ -1,0 +1,51 @@
+.clicker {
+  width: 100%;
+  height: 374px;
+  position: relative;
+
+  button {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 173px;
+  height: 145px;
+  font-family: 'Japanese3017';
+  font-size: 36px;
+  font-weight: 400;
+  color: white;
+  background: url(../../assets/effects/touch-bg.svg) no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: 9;
+  animation-name: fadeIn;
+  animation-duration: .5s;
+}
+
+.animate_fruit {
+  width: 273px;
+  height: 374px;
+  transform: scale(0.95);
+  transition: .2s ease;
+}
+
+.fruit {
+  width: 273px;
+  height: 374px;
+  transition: .2s ease;
+  transform: scale(1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
