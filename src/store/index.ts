@@ -10,7 +10,7 @@ export const useCoins = create<IStore>((set) => ({
   load: async () => {
     const response = await api.get(`/user_entry_check/${userId}`);
     const data = await response.data as IData;
-    if (data) {
+    if (data.coins && data.energy) {
       set({
         current_energy: data.energy,
         coins: data.coins,
@@ -21,7 +21,7 @@ export const useCoins = create<IStore>((set) => ({
   send: async (data: IData) => {
     const response = await api.post(`/user_exit/${userId}?coins=${data.coins}&energy=${data.energy}`);
     const newData = await response.data as IResponseData;
-    if (newData) {
+    if (newData.coins_amount && newData.energy_amount) {
       set({
         current_energy: newData.energy_amount,
         coins: newData.coins_amount,

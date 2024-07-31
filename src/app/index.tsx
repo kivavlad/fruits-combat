@@ -9,7 +9,7 @@ import Clicker from "../components/clicker";
 import Energy from "../components/energy";
 
 const App: React.FC = () => {
-  const socket = new WebSocketService(String(userId));
+  const socket = new WebSocketService(userId);
   const store = useCoins(state => state);
 
   const callbacks = {

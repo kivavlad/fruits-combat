@@ -1,9 +1,9 @@
 class WebSocketService {
   private coinsSocket: WebSocket | null = null;
   private energySocket: WebSocket | null = null;
-  private userId: string;
+  private userId: number;
 
-  constructor(userId: string) {
+  constructor(userId: number) {
     this.userId = userId;
   }
 
