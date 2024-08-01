@@ -1,6 +1,6 @@
 import {memo} from "react";
 import {formatScore} from "../../utils/helper";
-import {coinImg} from "../../assets/img";
+import {coinImg} from "../../assets/fruits";
 import effect from "../../assets/effects/score-effect.svg";
 import styles from "./style.module.scss";
 

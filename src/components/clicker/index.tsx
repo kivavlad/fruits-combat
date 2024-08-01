@@ -1,6 +1,6 @@
-import {memo, useState, useEffect} from "react";
+import {memo, useState, useLayoutEffect} from "react";
+import {fruitIcons} from "../../assets/fruits";
 import styles from "./style.module.scss";
-import {blueberryImg, cherryImg, fruitImg, orangeImg, pearImg, pineappleImg, raspberryImg, strawberryImg, watermellonImg} from "../../assets/img";
 
 interface IProps {
   energy: number;
@@ -12,7 +12,7 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
   const [currentFruit, setCurrentFruit] = useState<string>('');
   const [clicks, setClicks] = useState<{ x: number; y: number; id: number }[]>([]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const fruits = [blueberryImg, cherryImg, fruitImg, orangeImg, pearImg, pineappleImg, raspberryImg, strawberryImg, watermellonImg];
+  const fruits = [...fruitIcons];
 
   // Узнаем координаты клика или касания
   const handleClickPosition = (e: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>, clickValue: number) => {
@@ -35,7 +35,7 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
     }, 1000);
   }
 
-  // Анимация при касании
+  // Анимация
   const triggerAnimation = () => {
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 200)
@@ -61,33 +61,35 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
     }
   }
 
-  // Генерация рандомного фрукта при первичном рендере
-  useEffect(() => {
+  // Генерация рандомного фрукта до монтирования страницы
+  useLayoutEffect(() => {
     const randomIndex = Math.floor(Math.random() * fruits.length);
     setCurrentFruit(fruits[randomIndex]);
   }, [])
 
   return (
-    <div className={styles.clicker}>
-      <button 
-        type="button" 
-        onClick={handleClick} 
-        onTouchStart={handleTouch}
-      >
-        {clicks.map((click) => (
-          <div className={styles.indicator} 
-            key={click.id}
-            style={{
-              left: `${click.x - 90}px`,
-              top: `${click.y - 70}px`,
-            }}
-          >
-            {`+${counter}`}
-          </div>
-        ))}
-        <img className={isAnimating ? styles.animate_fruit : styles.fruit} src={currentFruit} alt="fruit"/>
-      </button>
-    </div>
+    <button className={styles.clicker}
+      type="button" 
+      onClick={handleClick} 
+      onTouchStart={handleTouch}
+    >
+      {clicks.map((click) => (
+        <div className={styles.indicator} 
+          key={click.id}
+          style={{
+            left: `${click.x - 90}px`,
+            top: `${click.y - 70}px`,
+          }}
+        >
+          {`+${counter}`}
+        </div>
+      ))}
+
+      <img className={isAnimating ? styles.animate_fruit : styles.fruit} 
+        src={currentFruit} 
+        alt="fruit"
+      />
+    </button>
   )
 }
 

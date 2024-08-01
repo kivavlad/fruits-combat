@@ -9,7 +9,7 @@ import raspberryImg from "./raspberry.svg";
 import strawberryImg from "./strawberry.svg";
 import watermellonImg from "./watermelon.svg";
 
-export {
+export const fruitIcons = [
   coinImg,
   blueberryImg,
   cherryImg,
@@ -20,4 +20,4 @@ export {
   raspberryImg,
   strawberryImg,
   watermellonImg,
-}
+]

@@ -17,4 +17,5 @@ api.interceptors.response.use(
 )
 
 export default api;
-export const userId = 1;
+
+export const userId = 1; // Заглушка для запросов

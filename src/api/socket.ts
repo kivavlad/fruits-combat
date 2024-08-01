@@ -7,7 +7,7 @@ class WebSocketService {
     this.userId = userId;
   }
 
-  connectCoinsGain(onLoad: () => void) {
+  connectCoins(onLoad: () => void) {
     this.coinsSocket = new WebSocket(`ws://127.0.0.1:8002/ws/coins_gain/${this.userId}/`);
 
     this.coinsSocket.onopen = () => {
@@ -24,7 +24,7 @@ class WebSocketService {
     }
   }
 
-  connectEnergyGain(onLoad: () => void) {
+  connectEnergy(onLoad: () => void) {
     this.energySocket = new WebSocket(`ws://127.0.0.1:8002/ws/energy_gain/${this.userId}/`);
 
     this.energySocket.onopen = () => {

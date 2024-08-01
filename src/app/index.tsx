@@ -9,7 +9,7 @@ import Clicker from "../components/clicker";
 import Energy from "../components/energy";
 
 const App: React.FC = () => {
-  const socket = new WebSocketService(userId);
+  const websocket = new WebSocketService(userId);
   const store = useCoins(state => state);
 
   const callbacks = {
@@ -18,8 +18,7 @@ const App: React.FC = () => {
         coins: store.coins + counter,
         energy: store.current_energy - 1
       })
-      socket.connectCoinsGain(() => store.load());
-    }, [store, socket]),
+    }, [store]),
   }
 
   useEffect(() => {
@@ -29,16 +28,13 @@ const App: React.FC = () => {
   useEffect(() => {
     if (store.max_energy > store.current_energy) {
       const interval = setInterval(() => {
-        store.send({
-          coins: store.coins,
-          energy: store.current_energy + 1
-        })
-        store.load();
+        Promise.all([
+          store.send({coins: store.coins, energy: store.current_energy + 1}),
+          websocket.connectCoins(() => store.load())
+        ])
       }, 1000);
   
-      return () => {
-        clearInterval(interval);
-      }
+      return () => clearInterval(interval);
     }
   }, [store.current_energy, store.max_energy])
 
