@@ -1,4 +1,3 @@
-import coinImg from "./coin.svg";
 import blueberryImg from "./blueberry.svg";
 import cherryImg from "./cherry.svg";
 import fruitImg from "./fruit.svg";
@@ -10,7 +9,6 @@ import strawberryImg from "./strawberry.svg";
 import watermellonImg from "./watermelon.svg";
 
 export const fruitIcons = [
-  coinImg,
   blueberryImg,
   cherryImg,
   fruitImg,
