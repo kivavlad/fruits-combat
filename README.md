@@ -1,3 +1,7 @@
+**Запуск:**
+ - npm install
+ - docker-compose up --build
+
 **Стек:** 
 WebApp, React + TS, Vite, SCSS, Axios, Zustand
 

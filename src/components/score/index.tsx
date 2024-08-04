@@ -1,4 +1,5 @@
 import {memo} from "react";
+import {motion} from "framer-motion";
 import {formatScore} from "../../utils/helper";
 import {coinImg} from "../../assets/icons";
 import effect from "../../assets/effects/score-effect.svg";
@@ -9,8 +10,24 @@ interface IProps {
 }
 
 const Score: React.FC<IProps> = ({score}) => {
+  const initial = {
+    y: -200
+  };
+
+  const animate = {
+    y: 0,
+    transition: { 
+      delay: .2 
+    }
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <motion.div 
+      className={styles.wrapper}
+      initial={initial}
+      animate={animate}
+      viewport={{ once: true }}
+    >
       <div className={styles.srore_wrapper}>
         <img src={coinImg} alt=""/>
         <div className={styles.score}>{formatScore(score)}</div>
@@ -18,7 +35,7 @@ const Score: React.FC<IProps> = ({score}) => {
       <div className={styles.effect}>
         <img src={effect} alt=""/>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

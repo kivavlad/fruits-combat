@@ -1,4 +1,5 @@
 import {memo, useState, useLayoutEffect} from "react";
+import {motion} from "framer-motion";
 import {fruitIcons} from "../../assets/fruits";
 import styles from "./style.module.scss";
 
@@ -35,12 +36,6 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
     }, 1000);
   }
 
-  // Анимация
-  const triggerAnimation = () => {
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 200)
-  }
-
   // Событие при клике
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (window.innerWidth > 768 && energy > 1) {
@@ -67,9 +62,34 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
     setCurrentFruit(fruits[randomIndex]);
   }, [])
 
+   // Анимация при клике
+   const triggerAnimation = () => {
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 200)
+  }
+
+  // Анимация при первичном появлении
+  const animation = {
+    hidden: {
+      y: 200, 
+      opacity: 0,
+    },
+    visible: {
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        delay: 1 * 0.5 
+      }
+    }
+  }
+
   return (
-    <button className={styles.clicker}
+    <motion.button 
+      className={styles.clicker}
       type="button" 
+      initial={animation.hidden}
+      animate={animation.visible}
+      viewport={{ once: true }}
       onClick={handleClick} 
       onTouchStart={handleTouch}
     >
@@ -89,7 +109,7 @@ const Clicker: React.FC<IProps> = ({energy, setCoins}) => {
         src={currentFruit} 
         alt="fruit"
       />
-    </button>
+    </motion.button>
   )
 }
 

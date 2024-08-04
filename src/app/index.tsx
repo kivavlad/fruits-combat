@@ -28,10 +28,8 @@ const App: React.FC = () => {
   useEffect(() => {
     if (store.max_energy > store.current_energy) {
       const interval = setInterval(() => {
-        Promise.all([
-          store.send({coins: store.coins, energy: store.current_energy + 1}),
-          websocket.connectCoins(() => store.load())
-        ])
+        store.send({coins: store.coins, energy: store.current_energy + 1}),
+        websocket.connectCoins(() => store.load())
       }, 1000);
   
       return () => clearInterval(interval);
